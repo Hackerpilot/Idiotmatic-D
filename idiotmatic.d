@@ -36,6 +36,30 @@ void foo(alias fun = a => a)(string[] args)
 
 }
 
+struct q {struct r { struct s{ this(string[]) {}} }}
+// Unfortunately DMD's parser is not a bad enough dude to save this syntax, but
+// it is perfectly legal according to the grammar spec.
+/+const .q.r.s * ([5 .. 10] t [int]) = .q.r.s(), o = ["a" ~ "b"];+/
+
+// Uncomment this to cause an ICE
+/+void doThings[](T)(T j, T k,) if (T == int);+/
+
+// Parser rejects this valid declaration
+/+void[] (doThings[int]) foo body { return []; }+/
+
+void doThings()
+{
+	try writeln("test");
+	catch (Exception)
+	{
+		// Huh. Doesn't the spec require giving a name to the exception?
+	}
+	// It doesn't like this for some reason...
+	/+catch (stdout).writeln("failed");+/
+	// Try this instead?
+	catch stdout.writeln("failed");
+}
+
 // How do you declare an array again?
 void main(string args[])
 {
