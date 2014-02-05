@@ -79,4 +79,7 @@ void main(string args[])
 	default:
 		break;
 	}
+    
+    // Lambdas, lambdas everywhere!
+    (() => (){})()();
 }
