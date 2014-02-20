@@ -38,8 +38,11 @@ void foo(alias fun = a => a)(string[] args)
 
 
 template nonsense(foo, bar) {} // A template. Nothing strange here.
-enum X(bar) = nonense!("foo", bar); // New syntax from DIP42.
-alias Y(bar) = nonense!("foo", bar); // enum, alias, whatever. Keywords are interchangable, right?
+enum W(bar) = nonense!("foo", bar); // New syntax from DIP42.
+alias X(bar) = nonense!("foo", bar); // enum, alias, whatever. Keywords are interchangeable, right?
+auto Y(bar) = nonense!("foo", bar); // Can't leave out auto...
+const Z(bar) = nonense!("foo", bar); // Sure. Why not. Const too.
+immutable Z(bar) = nonense!("foo", bar); // Doesn't even conflict with the other Z.
 
 struct q {struct r { struct s{ this(string[]) {}} }}
 // Unfortunately DMD's parser is not a bad enough dude to save this syntax, but
