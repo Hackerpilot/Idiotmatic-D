@@ -36,6 +36,11 @@ void foo(alias fun = a => a)(string[] args)
 
 }
 
+
+template nonsense(foo, bar) {} // A template. Nothing strange here.
+enum X(bar) = nonense!("foo", bar); // New syntax from DIP42.
+alias Y(bar) = nonense!("foo", bar); // enum, alias, whatever. Keywords are interchangable, right?
+
 struct q {struct r { struct s{ this(string[]) {}} }}
 // Unfortunately DMD's parser is not a bad enough dude to save this syntax, but
 // it is perfectly legal according to the grammar spec.
@@ -79,7 +84,7 @@ void main(string args[])
 	default:
 		break;
 	}
-    
+
     // Lambdas, lambdas everywhere!
     (() => (){})()();
 }
