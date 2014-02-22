@@ -1,0 +1,1 @@
+* Module declarations can be used to reset the name of a file where the file's name is not a valid module name. However, you cannot actually import a file with an invalid file name unless you give it to the compiler command line along with the file that does the import.
