@@ -31,6 +31,13 @@ union HasAnInvariant
 	new (size_t t, double y) in { assert(y < 20); } body { return cast(void*) new int[20].ptr; }
 }
 
+class Alpha
+{
+	class Bravo : this // This what?
+	{
+	}
+}
+
 void foo(alias fun = a => a)(string[] args)
 {
 
@@ -41,7 +48,7 @@ struct q {struct r { struct s{ this(string[]) {}} }}
 // it is perfectly legal according to the grammar spec.
 /+const .q.r.s * ([5 .. 10] t [int]) = .q.r.s(), o = ["a" ~ "b"];+/
 
-// Uncomment this to cause an ICE
+// Compiler doesn't like this either...
 /+void doThings[](T)(T j, T k,) if (T == int);+/
 
 // Parser rejects this valid declaration
