@@ -75,6 +75,16 @@ void doThings()
 	catch stdout.writeln("failed");
 }
 
+struct SomeStruct
+{
+	// One does not simply call this with a default argument.
+	this(int i = 20)
+	{
+		this.i = i;
+	}
+	int i;
+}
+
 // How do you declare an array again?
 void main(string args[])
 {
@@ -94,6 +104,11 @@ void main(string args[])
 	default:
 		break;
 	}
+
+	// You think this calls the constructor with its default argument?
+	// "You think that's air you're breathing?"
+	auto s = SomeStruct();
+	writeln("s.i = ", s.i); // Prints 0, obviously.
 
     // Lambdas, lambdas everywhere!
     (() => (){})()();
