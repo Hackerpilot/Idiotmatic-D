@@ -85,6 +85,8 @@ struct SomeStruct
 	int i;
 }
 
+void function() bar[](alias t)(int x, int y) = { writeln("test"); };
+
 // How do you declare an array again?
 void main(string args[])
 {
