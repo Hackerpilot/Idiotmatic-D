@@ -5,8 +5,8 @@ alias int counterType;
 alias numberType = float;
 // Guess what this does
 alias int[string] rectangleArray[];
-string results[];
-string[] errors;
+string results[](T) = "I have no idea what I'm doing";
+string[] errors(T) = ["WHEEEE"];
 
 int stuff[20 < 30];
 // Not sure why this won't compile, the language spec says I can use an
@@ -53,6 +53,9 @@ auto Y(bar) = nonense!("foo", bar); // Can't leave out auto...
 const Z(bar) = nonense!("foo", bar); // Sure. Why not. Const too.
 immutable Z(bar) = nonense!("foo", bar); // Doesn't even conflict with the other Z.
 static Z(bar) = nonense!("foo", bar); // I've got a fever and the only cure is more symbols with the same name.
+string A(T) = "A", B(T) = "B";
+int i[](T) = [10]; // Nothing to see here
+double w(alias t) = 1.0f;
 
 struct q {struct r { struct s{ this(string[]) {}} }}
 // Unfortunately DMD's parser is not a bad enough dude to save this syntax, but
@@ -78,6 +81,18 @@ void doThings()
 	catch stdout.writeln("failed");
 }
 
+struct SomeStruct
+{
+	// One does not simply call this with a default argument.
+	this(int i = 20)
+	{
+		this.i = i;
+	}
+	int i;
+}
+
+void function() bar[](alias t)(int x, int y) = { writeln("test"); };
+
 // How do you declare an array again?
 void main(string args[])
 {
@@ -97,6 +112,11 @@ void main(string args[])
 	default:
 		break;
 	}
+
+	// You think this calls the constructor with its default argument?
+	// "You think that's air you're breathing?"
+	auto s = SomeStruct();
+	writeln("s.i = ", s.i); // Prints 0, obviously.
 
     // Lambdas, lambdas everywhere!
     (() => (){})()();
