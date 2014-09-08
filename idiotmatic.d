@@ -19,6 +19,9 @@ int[] a, b;
 // Because obviously int[] and int[] are not the same type
 // int c[], d[];
 
+// I have no idea.
+alias extern(Windows) void* fnRtlAllocateHeap(void* HeapHandle, uint Flags, size_t Size) nothrow;
+
 union HasAnInvariant
 {
 	// Language spec doesn't allow invariants here, but who cares?
