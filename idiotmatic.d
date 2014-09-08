@@ -90,6 +90,12 @@ struct SomeStruct
 
 void function() bar[](alias t)(int x, int y) = { writeln("test"); };
 
+void classy()
+{
+	scope (success) class SomeClass { int a; int b; }
+	scope (failure) class OtherClass { int c; int d; }
+}
+
 // How do you declare an array again?
 void main(string args[])
 {
