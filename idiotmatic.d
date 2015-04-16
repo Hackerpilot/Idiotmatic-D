@@ -24,11 +24,6 @@ alias extern(Windows) void* fnRtlAllocateHeap(void* HeapHandle, uint Flags, size
 
 union HasAnInvariant
 {
-	// Language spec doesn't allow invariants here, but who cares?
-	invariant()
-	{
-		assert (x > 0);
-	}
 	int x;
 
 	new (size_t t, double y) in { assert(y < 20); } body { return cast(void*) new int[20].ptr; }
