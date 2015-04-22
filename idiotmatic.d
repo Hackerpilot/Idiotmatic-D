@@ -121,4 +121,7 @@ void main(string args[])
 
     // Lambdas, lambdas everywhere!
     (() => (){})()();
+
+	for ({};)
+		writeln("Infinite loops are fun");
 }
