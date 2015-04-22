@@ -94,6 +94,11 @@ void classy()
 	scope (failure) class OtherClass { int c; int d; }
 }
 
+void funWithUfcsAndPropertySyntax() {
+	import std.typecons : tuple;
+	"%s %s".writefln = ("foo".tuple = "bar").expand;
+}
+
 // How do you declare an array again?
 void main(string args[])
 {
